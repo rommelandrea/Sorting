@@ -42,7 +42,16 @@ void isort(int a[], int length) {
  * @param length
  */
 void ssort(int a[], int length) {
-
+    int i, j, min;
+    
+    for(i=0; i<length-1; i++){
+        min = i;
+        for(j=i+1; j<length; j++){
+            if(a[min] > a[j])
+                min = j;
+        }
+        swap(a, i, min);
+    }
 }
 
 /**
@@ -107,12 +116,12 @@ void print(int a[], int length){
 }
 
 int main(int argc, char** argv) {
-    int length = 10;
+    int length = 20;
     int a[length];
     
-    fillRandomArray(a, length, 10);
+    fillRandomArray(a, length, 20);
     print(a, length);
-    isort(a, length);
+    ssort(a, length);
     print(a, length);
     
     return (EXIT_SUCCESS);

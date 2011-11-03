@@ -1,0 +1,7 @@
+---- Tempo di esecuzione degli algoritmi di ordinamento ----
+
+Insertion Sort                                        --> : 	53.07 secondi
+Selection Sort con estrazioni successive del minimo   --> : 	27.01 secondi
+Selection Sort con estrazioni successive del massimo  --> : 	27.00 secondi
+
+

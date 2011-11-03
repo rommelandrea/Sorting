@@ -157,16 +157,18 @@ int main(int argc, char** argv) {
     clock_t start1, start2, start3;
     clock_t end1, end2, end3;
 
+    FILE *f = fopen("misure_tempi.txt", "w+");
+
     fillRandomArray(a, length, 10000);
 
     copyArray(a, b, length);
     copyArray(a, c, length);
 
-/*
-    print(a, length);
-    print(b, length);
-    print(c, length);
-*/
+    /*
+        print(a, length);
+        print(b, length);
+        print(c, length);
+     */
 
     start1 = clock();
     ssort(a, length);
@@ -203,7 +205,14 @@ int main(int argc, char** argv) {
         printf("c e' ordinato\n");
     else
         printf("c non e' oridinato\n");
-    
+
+    fprintf(f, "----Tempo di esecuzione degli algoritmi di ordinamento con %d elementi----\n\n", length);
+    fprintf(f, "Insertion Sort                                        --> : \t%5.4f secondi\n", tot3);
+    fprintf(f, "Selection Sort con estrazioni successive del minimo   --> : \t%5.4f secondi\n", tot1);
+    fprintf(f, "Selection Sort con estrazioni successive del massimo  --> : \t%5.4f secondi\n\n\n", tot2);
+
+    fclose(f);
+
     return (EXIT_SUCCESS);
 }
 

@@ -153,7 +153,6 @@ int main(int argc, char** argv) {
     int a[length];
     int b[length];
     int c[length];
-    int *d = malloc(length*sizeof(int));
 
     clock_t start1, start2, start3;
     clock_t end1, end2, end3;
@@ -162,7 +161,6 @@ int main(int argc, char** argv) {
 
     copyArray(a, b, length);
     copyArray(a, c, length);
-    copyArray(a, d, length);
 
 /*
     print(a, length);
@@ -176,7 +174,7 @@ int main(int argc, char** argv) {
 
 
     start2 = clock();
-    ssort(d, length);
+    ssort2(b, length);
     end2 = clock();
 
     start3 = clock();
@@ -205,8 +203,6 @@ int main(int argc, char** argv) {
         printf("c e' ordinato\n");
     else
         printf("c non e' oridinato\n");
-
-    free(d);
     
     return (EXIT_SUCCESS);
 }

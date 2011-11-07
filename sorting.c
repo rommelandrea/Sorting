@@ -1,8 +1,7 @@
 /* 
  * File:   sorting.c
- * Author: rommel
+ * Author: Andrea Romanello
  *
- * Created on October 28, 2011, 11:42 AM
  */
 
 #include <stdio.h>
@@ -21,6 +20,8 @@ void fillRandomArray(int [], int, int);
 void copyArray(int [], int [], int);
 void swap(int [], int, int);
 void print(int [], int);
+void tester(int, int, int);
+int ricBin(int, int [], int);
 
 /**
  * ordinamento per insertion sort
@@ -75,6 +76,44 @@ void ssort2(int a[], int length) {
         swap(a, j, max);
         j--;
         i = 0;
+    }
+}
+
+int ricBin(int x, int a[], int length) {
+    int inf, mid, sup;
+
+    inf = 0;
+    sup = length - 1;
+
+    while (inf <= sup) {
+        mid = ((sup - inf) / 2) + inf;
+        if (a[mid] == x)
+            return 1;
+        else {
+            if (a[mid] > x) {
+                sup = mid - 1;
+            } else {
+                inf = mid + 1;
+            }
+        }
+    }
+    return 0;
+}
+
+int ricBinr(int x, int a[], int inf, int sup) {
+    if (inf > sup)
+        return 0;
+
+    int mid = ((sup - inf) / 2) + inf;
+
+    if (a[mid] == x)
+        return 1;
+    else {
+        if (a[mid] > x) {
+            return ricBinr(x, a, inf, mid-1);
+        } else {
+            return ricBinr(x, a, mid+1, sup);
+        }
     }
 }
 
@@ -153,7 +192,7 @@ void tester(int start, int end, int step) {
     FILE *f = fopen("misure_tempi.txt", "w+");
     clock_t start1, start2, start3;
     clock_t end1, end2, end3;
-    
+
     float tot1, tot2, tot3;
 
     int a1[end];
@@ -214,68 +253,21 @@ void tester(int start, int end, int step) {
 
 int main(int argc, char** argv) {
 
-    tester(5000, 100000, 5000);
+    //tester(5000, 100000, 5000);
 
-    /*    
-        int length = 100000;
-        int a[length];
-        int b[length];
-        int c[length];
+    int length = 20;
+    int a[length];
+    int result;
 
-        clock_t start1, start2, start3;
-        clock_t end1, end2, end3;
+    fillRandomArray(a, length, length);
+    ssort(a, length);
 
-        FILE *f = fopen("misure_tempi.txt", "w+");
+    print(a, length);
 
-        fillRandomArray(a, length, 10000);
+    result = ricBinr(3, a, 0, length-1);
 
-        copyArray(a, b, length);
-        copyArray(a, c, length);
+    printf("risultato ricerca binaria: %d \n", result);
 
-        start1 = clock();
-        ssort(a, length);
-        end1 = clock();
-
-
-        start2 = clock();
-        ssort2(b, length);
-        end2 = clock();
-
-        start3 = clock();
-        isort(c, length);
-        end3 = clock();
-
-        float tot1 = (float) (end1 - start1) / (float) CLOCKS_PER_SEC;
-        float tot2 = (float) (end2 - start2) / (float) CLOCKS_PER_SEC;
-        float tot3 = (float) (end3 - start3) / (float) CLOCKS_PER_SEC;
-
-
-        printf("tempo selection = %.4f \ntempo selectionMax = %.4f \ntempo insertion = %f\n", tot1, tot2, tot3);
-
-
-        if (sorted(a, length))
-            printf("a e' ordinato\n");
-        else
-            printf("a non e' oridinato\n");
-
-        if (sorted(b, length))
-            printf("b e' ordinato\n");
-        else
-            printf("b non e' oridinato\n");
-
-        if (sorted(c, length))
-            printf("c e' ordinato\n");
-        else
-            printf("c non e' oridinato\n");
-
-        fprintf(f, "----Tempo di esecuzione degli algoritmi di ordinamento con %d elementi----\n\n", length);
-        fprintf(f, "Insertion Sort                                        --> : \t%5.4f secondi\n", tot3);
-        fprintf(f, "Selection Sort con estrazioni successive del minimo   --> : \t%5.4f secondi\n", tot1);
-        fprintf(f, "Selection Sort con estrazioni successive del massimo  --> : \t%5.4f secondi\n\n\n", tot2);
-
-        fclose(f);
-     * 
-     */
     return (EXIT_SUCCESS);
 }
 

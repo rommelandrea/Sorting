@@ -1,7 +1,140 @@
----- Tempo di esecuzione degli algoritmi di ordinamento ----
+----Tempo di esecuzione degli algoritmi di ordinamento con 5000 elementi----
 
-Insertion Sort                                        --> : 	53.07 secondi
-Selection Sort con estrazioni successive del minimo   --> : 	27.01 secondi
-Selection Sort con estrazioni successive del massimo  --> : 	27.00 secondi
+Insertion Sort                                        --> : 	0.1500 secondi
+Selection Sort con estrazioni successive del minimo   --> : 	0.0600 secondi
+Selection Sort con estrazioni successive del massimo  --> : 	0.0800 secondi
+
+
+----Tempo di esecuzione degli algoritmi di ordinamento con 10000 elementi----
+
+Insertion Sort                                        --> : 	0.5500 secondi
+Selection Sort con estrazioni successive del minimo   --> : 	0.2900 secondi
+Selection Sort con estrazioni successive del massimo  --> : 	0.2800 secondi
+
+
+----Tempo di esecuzione degli algoritmi di ordinamento con 15000 elementi----
+
+Insertion Sort                                        --> : 	1.2400 secondi
+Selection Sort con estrazioni successive del minimo   --> : 	0.6500 secondi
+Selection Sort con estrazioni successive del massimo  --> : 	0.6400 secondi
+
+
+----Tempo di esecuzione degli algoritmi di ordinamento con 20000 elementi----
+
+Insertion Sort                                        --> : 	2.1100 secondi
+Selection Sort con estrazioni successive del minimo   --> : 	1.0700 secondi
+Selection Sort con estrazioni successive del massimo  --> : 	1.0800 secondi
+
+
+----Tempo di esecuzione degli algoritmi di ordinamento con 25000 elementi----
+
+Insertion Sort                                        --> : 	3.3200 secondi
+Selection Sort con estrazioni successive del minimo   --> : 	1.6700 secondi
+Selection Sort con estrazioni successive del massimo  --> : 	1.6700 secondi
+
+
+----Tempo di esecuzione degli algoritmi di ordinamento con 30000 elementi----
+
+Insertion Sort                                        --> : 	4.7700 secondi
+Selection Sort con estrazioni successive del minimo   --> : 	2.4300 secondi
+Selection Sort con estrazioni successive del massimo  --> : 	2.4000 secondi
+
+
+----Tempo di esecuzione degli algoritmi di ordinamento con 35000 elementi----
+
+Insertion Sort                                        --> : 	6.4200 secondi
+Selection Sort con estrazioni successive del minimo   --> : 	3.2800 secondi
+Selection Sort con estrazioni successive del massimo  --> : 	3.3200 secondi
+
+
+----Tempo di esecuzione degli algoritmi di ordinamento con 40000 elementi----
+
+Insertion Sort                                        --> : 	8.3900 secondi
+Selection Sort con estrazioni successive del minimo   --> : 	4.3000 secondi
+Selection Sort con estrazioni successive del massimo  --> : 	4.3300 secondi
+
+
+----Tempo di esecuzione degli algoritmi di ordinamento con 45000 elementi----
+
+Insertion Sort                                        --> : 	10.6100 secondi
+Selection Sort con estrazioni successive del minimo   --> : 	5.8100 secondi
+Selection Sort con estrazioni successive del massimo  --> : 	5.8000 secondi
+
+
+----Tempo di esecuzione degli algoritmi di ordinamento con 50000 elementi----
+
+Insertion Sort                                        --> : 	13.1200 secondi
+Selection Sort con estrazioni successive del minimo   --> : 	6.6900 secondi
+Selection Sort con estrazioni successive del massimo  --> : 	6.6800 secondi
+
+
+----Tempo di esecuzione degli algoritmi di ordinamento con 55000 elementi----
+
+Insertion Sort                                        --> : 	15.7500 secondi
+Selection Sort con estrazioni successive del minimo   --> : 	8.0800 secondi
+Selection Sort con estrazioni successive del massimo  --> : 	8.0800 secondi
+
+
+----Tempo di esecuzione degli algoritmi di ordinamento con 60000 elementi----
+
+Insertion Sort                                        --> : 	18.9100 secondi
+Selection Sort con estrazioni successive del minimo   --> : 	9.7500 secondi
+Selection Sort con estrazioni successive del massimo  --> : 	9.6800 secondi
+
+
+----Tempo di esecuzione degli algoritmi di ordinamento con 65000 elementi----
+
+Insertion Sort                                        --> : 	22.1400 secondi
+Selection Sort con estrazioni successive del minimo   --> : 	11.3500 secondi
+Selection Sort con estrazioni successive del massimo  --> : 	11.3100 secondi
+
+
+----Tempo di esecuzione degli algoritmi di ordinamento con 70000 elementi----
+
+Insertion Sort                                        --> : 	25.9400 secondi
+Selection Sort con estrazioni successive del minimo   --> : 	13.1100 secondi
+Selection Sort con estrazioni successive del massimo  --> : 	13.1100 secondi
+
+
+----Tempo di esecuzione degli algoritmi di ordinamento con 75000 elementi----
+
+Insertion Sort                                        --> : 	30.5400 secondi
+Selection Sort con estrazioni successive del minimo   --> : 	15.9200 secondi
+Selection Sort con estrazioni successive del massimo  --> : 	15.6000 secondi
+
+
+----Tempo di esecuzione degli algoritmi di ordinamento con 80000 elementi----
+
+Insertion Sort                                        --> : 	35.0600 secondi
+Selection Sort con estrazioni successive del minimo   --> : 	17.6500 secondi
+Selection Sort con estrazioni successive del massimo  --> : 	17.1900 secondi
+
+
+----Tempo di esecuzione degli algoritmi di ordinamento con 85000 elementi----
+
+Insertion Sort                                        --> : 	37.9300 secondi
+Selection Sort con estrazioni successive del minimo   --> : 	19.9200 secondi
+Selection Sort con estrazioni successive del massimo  --> : 	19.8600 secondi
+
+
+----Tempo di esecuzione degli algoritmi di ordinamento con 90000 elementi----
+
+Insertion Sort                                        --> : 	42.4500 secondi
+Selection Sort con estrazioni successive del minimo   --> : 	21.7400 secondi
+Selection Sort con estrazioni successive del massimo  --> : 	21.7300 secondi
+
+
+----Tempo di esecuzione degli algoritmi di ordinamento con 95000 elementi----
+
+Insertion Sort                                        --> : 	47.5600 secondi
+Selection Sort con estrazioni successive del minimo   --> : 	24.1700 secondi
+Selection Sort con estrazioni successive del massimo  --> : 	24.1400 secondi
+
+
+----Tempo di esecuzione degli algoritmi di ordinamento con 100000 elementi----
+
+Insertion Sort                                        --> : 	52.4700 secondi
+Selection Sort con estrazioni successive del minimo   --> : 	26.8100 secondi
+Selection Sort con estrazioni successive del massimo  --> : 	26.8300 secondi
 
 

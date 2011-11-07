@@ -148,71 +148,134 @@ void print(int a[], int length) {
     printf("\n");
 }
 
-int main(int argc, char** argv) {
-    int length = 100000;
-    int a[length];
-    int b[length];
-    int c[length];
-
-    clock_t start1, start2, start3;
-    clock_t end1, end2, end3;
+void tester(int start, int end, int step) {
 
     FILE *f = fopen("misure_tempi.txt", "w+");
+    clock_t start1, start2, start3;
+    clock_t end1, end2, end3;
+    
+    float tot1, tot2, tot3;
 
-    fillRandomArray(a, length, 10000);
+    int a1[end];
+    int a2[end];
+    int a3[end];
 
-    copyArray(a, b, length);
-    copyArray(a, c, length);
+    for (; start <= end; start += step) {
+        printf("testo con %d\n", start);
 
-    /*
-        print(a, length);
-        print(b, length);
-        print(c, length);
-     */
+        fillRandomArray(a1, start, start / 5);
+        copyArray(a1, a2, start);
+        copyArray(a1, a3, start);
 
-    start1 = clock();
-    ssort(a, length);
-    end1 = clock();
-
-
-    start2 = clock();
-    ssort2(b, length);
-    end2 = clock();
-
-    start3 = clock();
-    isort(c, length);
-    end3 = clock();
-
-    float tot1 = (float) (end1 - start1) / (float) CLOCKS_PER_SEC;
-    float tot2 = (float) (end2 - start2) / (float) CLOCKS_PER_SEC;
-    float tot3 = (float) (end3 - start3) / (float) CLOCKS_PER_SEC;
+        start1 = clock();
+        ssort(a1, start);
+        end1 = clock();
 
 
-    printf("tempo selection = %.4f \ntempo selectionMax = %.4f \ntempo insertion = %f\n", tot1, tot2, tot3);
+        start2 = clock();
+        ssort2(a2, start);
+        end2 = clock();
+
+        start3 = clock();
+        isort(a3, start);
+        end3 = clock();
+
+        tot1 = (float) (end1 - start1) / (float) CLOCKS_PER_SEC;
+        tot2 = (float) (end2 - start2) / (float) CLOCKS_PER_SEC;
+        tot3 = (float) (end3 - start3) / (float) CLOCKS_PER_SEC;
 
 
-    if (sorted(a, length))
-        printf("a e' ordinato\n");
-    else
-        printf("a non e' oridinato\n");
+        printf("tempo selection = %.4f \ntempo selectionMax = %.4f \ntempo insertion = %f\n", tot1, tot2, tot3);
 
-    if (sorted(b, length))
-        printf("b e' ordinato\n");
-    else
-        printf("b non e' oridinato\n");
 
-    if (sorted(c, length))
-        printf("c e' ordinato\n");
-    else
-        printf("c non e' oridinato\n");
+        if (sorted(a1, start))
+            printf("a e' ordinato\n");
+        else
+            printf("a non e' oridinato\n");
 
-    fprintf(f, "----Tempo di esecuzione degli algoritmi di ordinamento con %d elementi----\n\n", length);
-    fprintf(f, "Insertion Sort                                        --> : \t%5.4f secondi\n", tot3);
-    fprintf(f, "Selection Sort con estrazioni successive del minimo   --> : \t%5.4f secondi\n", tot1);
-    fprintf(f, "Selection Sort con estrazioni successive del massimo  --> : \t%5.4f secondi\n\n\n", tot2);
+        if (sorted(a2, start))
+            printf("b e' ordinato\n");
+        else
+            printf("b non e' oridinato\n");
+
+        if (sorted(a3, start))
+            printf("c e' ordinato\n");
+        else
+            printf("c non e' oridinato\n");
+
+        fprintf(f, "----Tempo di esecuzione degli algoritmi di ordinamento con %d elementi----\n\n", start);
+        fprintf(f, "Insertion Sort                                        --> : \t%5.4f secondi\n", tot3);
+        fprintf(f, "Selection Sort con estrazioni successive del minimo   --> : \t%5.4f secondi\n", tot1);
+        fprintf(f, "Selection Sort con estrazioni successive del massimo  --> : \t%5.4f secondi\n\n\n", tot2);
+    }
 
     fclose(f);
+}
 
+int main(int argc, char** argv) {
+
+    tester(5000, 100000, 5000);
+
+    /*    
+        int length = 100000;
+        int a[length];
+        int b[length];
+        int c[length];
+
+        clock_t start1, start2, start3;
+        clock_t end1, end2, end3;
+
+        FILE *f = fopen("misure_tempi.txt", "w+");
+
+        fillRandomArray(a, length, 10000);
+
+        copyArray(a, b, length);
+        copyArray(a, c, length);
+
+        start1 = clock();
+        ssort(a, length);
+        end1 = clock();
+
+
+        start2 = clock();
+        ssort2(b, length);
+        end2 = clock();
+
+        start3 = clock();
+        isort(c, length);
+        end3 = clock();
+
+        float tot1 = (float) (end1 - start1) / (float) CLOCKS_PER_SEC;
+        float tot2 = (float) (end2 - start2) / (float) CLOCKS_PER_SEC;
+        float tot3 = (float) (end3 - start3) / (float) CLOCKS_PER_SEC;
+
+
+        printf("tempo selection = %.4f \ntempo selectionMax = %.4f \ntempo insertion = %f\n", tot1, tot2, tot3);
+
+
+        if (sorted(a, length))
+            printf("a e' ordinato\n");
+        else
+            printf("a non e' oridinato\n");
+
+        if (sorted(b, length))
+            printf("b e' ordinato\n");
+        else
+            printf("b non e' oridinato\n");
+
+        if (sorted(c, length))
+            printf("c e' ordinato\n");
+        else
+            printf("c non e' oridinato\n");
+
+        fprintf(f, "----Tempo di esecuzione degli algoritmi di ordinamento con %d elementi----\n\n", length);
+        fprintf(f, "Insertion Sort                                        --> : \t%5.4f secondi\n", tot3);
+        fprintf(f, "Selection Sort con estrazioni successive del minimo   --> : \t%5.4f secondi\n", tot1);
+        fprintf(f, "Selection Sort con estrazioni successive del massimo  --> : \t%5.4f secondi\n\n\n", tot2);
+
+        fclose(f);
+     * 
+     */
     return (EXIT_SUCCESS);
 }
 

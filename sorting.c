@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#include <sys/time.h>
 
 /*
  * 
@@ -79,6 +80,13 @@ void ssort2(int a[], int length) {
     }
 }
 
+/**
+ * ricerca binaria implementata iterativamente
+ * @param x elemento da ricercare
+ * @param a array di elementi
+ * @param length lunghezza dell'array
+ * @return 0 se non trova l'elemento 1 se lo trova
+ */
 int ricBin(int x, int a[], int length) {
     int inf, mid, sup;
 
@@ -100,6 +108,15 @@ int ricBin(int x, int a[], int length) {
     return 0;
 }
 
+/**
+ * ricerca un elemento nell'array tramite il metodo della ricerca binaria
+ * implementato ricorsivamente
+ * @param x valore da cercare
+ * @param a array di elementi
+ * @param inf indice dell'elemento inferiore
+ * @param sup indice dell'elemento superiore
+ * @return 0 se non trova l'elemento 1 se lo trova
+ */
 int ricBinr(int x, int a[], int inf, int sup) {
     if (inf > sup)
         return 0;
@@ -110,9 +127,9 @@ int ricBinr(int x, int a[], int inf, int sup) {
         return 1;
     else {
         if (a[mid] > x) {
-            return ricBinr(x, a, inf, mid-1);
+            return ricBinr(x, a, inf, mid - 1);
         } else {
-            return ricBinr(x, a, mid+1, sup);
+            return ricBinr(x, a, mid + 1, sup);
         }
     }
 }
@@ -189,11 +206,13 @@ void print(int a[], int length) {
 
 void tester(int start, int end, int step) {
 
-    FILE *f = fopen("misure_tempi.txt", "w+");
-    clock_t start1, start2, start3;
-    clock_t end1, end2, end3;
+    FILE *f = fopen("tempi.csv", "w+");
 
-    float tot1, tot2, tot3;
+    struct timeval start1, end1;
+    struct timeval start2, end2;
+    struct timeval start3, end3;
+
+    double tot1, tot2, tot3;
 
     int a1[end];
     int a2[end];
@@ -205,24 +224,25 @@ void tester(int start, int end, int step) {
         fillRandomArray(a1, start, start / 5);
         copyArray(a1, a2, start);
         copyArray(a1, a3, start);
+        
+        gettimeofday(&start1, NULL);
+      	ssort(a1, start);
+      	gettimeofday(&end1, NULL);
+      	tot1 = (end1.tv_sec - start1.tv_sec) * 1000.0;      // sec to ms
+      	tot1 += (end1.tv_usec - start1.tv_usec) / 1000.0;   // us to ms
 
-        start1 = clock();
-        ssort(a1, start);
-        end1 = clock();
 
-
-        start2 = clock();
+        gettimeofday(&start2, NULL);
         ssort2(a2, start);
-        end2 = clock();
+        gettimeofday(&end2, NULL);
+      	tot2 = (end2.tv_sec - start2.tv_sec) * 1000.0;      // sec to ms
+      	tot2 += (end2.tv_usec - start2.tv_usec) / 1000.0;   // us to ms
 
-        start3 = clock();
+        gettimeofday(&start3, NULL);
         isort(a3, start);
-        end3 = clock();
-
-        tot1 = (float) (end1 - start1) / (float) CLOCKS_PER_SEC;
-        tot2 = (float) (end2 - start2) / (float) CLOCKS_PER_SEC;
-        tot3 = (float) (end3 - start3) / (float) CLOCKS_PER_SEC;
-
+        gettimeofday(&end3, NULL);
+      	tot2 = (end3.tv_sec - start3.tv_sec) * 1000.0;      // sec to ms
+      	tot2 += (end3.tv_usec - start3.tv_usec) / 1000.0;   // us to ms
 
         printf("tempo selection = %.4f \ntempo selectionMax = %.4f \ntempo insertion = %f\n", tot1, tot2, tot3);
 
@@ -242,10 +262,13 @@ void tester(int start, int end, int step) {
         else
             printf("c non e' oridinato\n");
 
+        fprintf(f, "%d,%5.4f,%5.4f,%5.4f\n", start, tot3, tot1, tot2);
+        /*
         fprintf(f, "----Tempo di esecuzione degli algoritmi di ordinamento con %d elementi----\n\n", start);
         fprintf(f, "Insertion Sort                                        --> : \t%5.4f secondi\n", tot3);
         fprintf(f, "Selection Sort con estrazioni successive del minimo   --> : \t%5.4f secondi\n", tot1);
         fprintf(f, "Selection Sort con estrazioni successive del massimo  --> : \t%5.4f secondi\n\n\n", tot2);
+         */
     }
 
     fclose(f);
@@ -253,21 +276,21 @@ void tester(int start, int end, int step) {
 
 int main(int argc, char** argv) {
 
-    //tester(5000, 100000, 5000);
+    tester(5000, 50000, 5000);
+    /*
+        int length = 20;
+        int a[length];
+        int result;
 
-    int length = 20;
-    int a[length];
-    int result;
+        fillRandomArray(a, length, length);
+        ssort(a, length);
 
-    fillRandomArray(a, length, length);
-    ssort(a, length);
+        print(a, length);
 
-    print(a, length);
+        result = ricBinr(3, a, 0, length-1);
 
-    result = ricBinr(3, a, 0, length-1);
-
-    printf("risultato ricerca binaria: %d \n", result);
-
+        printf("risultato ricerca binaria: %d \n", result);
+     */
     return (EXIT_SUCCESS);
 }
 

@@ -33,7 +33,7 @@ void isort(int a[], int length) {
     int i;
 
     for (i = 1; i < length; i++) {
-        while (a[i - 1] > a[i] && i > 0) {
+        while (i > 0 && a[i - 1] > a[i]) {
             swap(a, i - 1, i);
             i--;
         }
@@ -224,25 +224,25 @@ void tester(int start, int end, int step) {
         fillRandomArray(a1, start, start / 5);
         copyArray(a1, a2, start);
         copyArray(a1, a3, start);
-        
+
         gettimeofday(&start1, NULL);
-      	ssort(a1, start);
-      	gettimeofday(&end1, NULL);
-      	tot1 = (end1.tv_sec - start1.tv_sec) * 1000.0;      // sec to ms
-      	tot1 += (end1.tv_usec - start1.tv_usec) / 1000.0;   // us to ms
+        ssort(a1, start);
+        gettimeofday(&end1, NULL);
+        tot1 = (end1.tv_sec - start1.tv_sec) * 1000.0; // sec to ms
+        tot1 += (end1.tv_usec - start1.tv_usec) / 1000.0; // us to ms
 
 
         gettimeofday(&start2, NULL);
         ssort2(a2, start);
         gettimeofday(&end2, NULL);
-      	tot2 = (end2.tv_sec - start2.tv_sec) * 1000.0;      // sec to ms
-      	tot2 += (end2.tv_usec - start2.tv_usec) / 1000.0;   // us to ms
+        tot2 = (end2.tv_sec - start2.tv_sec) * 1000.0; // sec to ms
+        tot2 += (end2.tv_usec - start2.tv_usec) / 1000.0; // us to ms
 
         gettimeofday(&start3, NULL);
         isort(a3, start);
         gettimeofday(&end3, NULL);
-      	tot2 = (end3.tv_sec - start3.tv_sec) * 1000.0;      // sec to ms
-      	tot2 += (end3.tv_usec - start3.tv_usec) / 1000.0;   // us to ms
+        tot2 = (end3.tv_sec - start3.tv_sec) * 1000.0; // sec to ms
+        tot2 += (end3.tv_usec - start3.tv_usec) / 1000.0; // us to ms
 
         printf("tempo selection = %.4f \ntempo selectionMax = %.4f \ntempo insertion = %f\n", tot1, tot2, tot3);
 
